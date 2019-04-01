@@ -533,7 +533,7 @@ function EavesDrop:CombatEvent()
       if (amount < db["HFILTER"]) then return end
       if (db["OVERHEAL"]) and overHeal > 0 then text = string_format("%d {%d}", shortenValue(amount-overHeal), shortenValue(overHeal)) end
       if (critical) then text = critchar..text..critchar end
-      if (db["HEALERID"] == true and not fromPlayer) then text = text.." ("..sourceName..")" end
+      if (db["HEALERID"] == true and not fromPlayer and sourceName) then text = text.." ("..sourceName..")" end
       color = db["PHEAL"]
       if (self:TrackStat(inout, "heal", spellName, texture, SCHOOL_STRINGS[spellSchool], amount, critical, message)) then
         text = newhigh..text..newhigh
@@ -1048,5 +1048,5 @@ function EavesDrop:ShowHistory()
   else
     EavesDropHistoryFrame:Hide()
   end
-  PlaySound("igMainMenuOptionCheckBoxOn")
+  PlaySound(856) -- SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON
 end
